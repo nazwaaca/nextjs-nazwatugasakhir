@@ -6,7 +6,6 @@ import { redirect } from 'next/navigation';
 
 export default function Dashboard() {
   const { data: session, status } = useSession();
-  const router = useRouter();
 
   if (status === 'loading') return <p>Loading...</p>;
 

@@ -1,4 +1,3 @@
-// app/profile/page.tsx
 import Image from 'next/image';
 
 export default function ProfileTokoCrochet() {
@@ -14,21 +13,28 @@ export default function ProfileTokoCrochet() {
           priority
         />
         <h1 className="text-4xl font-bold text-pink-500 mb-5 drop-shadow-lg">CrochetCute Shop</h1>
+        
         <p className="text-sm text-gray-700 m-4 text-center">
-          "Toko rajutan handmade dengan sentuhan cinta dan warna pastel.<br />
-          Temukan boneka amigurumi, pouch, tas, dan aksesoris lucu lainnya!""
+          &quot;Toko rajutan handmade dengan sentuhan cinta dan warna pastel. Temukan boneka amigurumi, pouch, tas, dan aksesoris lucu lainnya!&quot;
         </p>
 
         <p className="text-sm text-gray-700 m-4 text-center">
-            Temukan Kami disini
+          Temukan Kami disini
         </p>
+
         <div className="flex gap-4 mt-2">
-          <a href="https://instagram.com/crochetcute.shop" target="_blank" rel="noopener noreferrer"
-            className="bg-pink-400 text-white px-4 py-2 rounded-full shadow hover:bg-pink-500 transition">
+          <a
+            href="https://instagram.com/crochetcute.shop"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-pink-400 text-white px-4 py-2 rounded-full shadow hover:bg-pink-500 transition"
+          >
             Instagram
           </a>
-          <a href="mailto:crochetcute@email.com"
-            className="bg-purple-400 text-white px-4 py-2 rounded-full shadow hover:bg-purple-500 transition">
+          <a
+            href="mailto:crochetcute@email.com"
+            className="bg-purple-400 text-white px-4 py-2 rounded-full shadow hover:bg-purple-500 transition"
+          >
             Email
           </a>
         </div>
