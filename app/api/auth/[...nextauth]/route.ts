@@ -1,15 +1,13 @@
 import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaClient } from "@/app/generated/prisma";
 import bcrypt from "bcrypt";
 import { z } from "zod";
-import { NextAuthOptions } from "next-auth";
-
-// Import your providers here
-import CredentialsProvider from "next-auth/providers/credentials";
+import type { NextAuthOptions } from "next-auth";
 
 const prisma = new PrismaClient();
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -27,17 +25,14 @@ export const authOptions: NextAuthOptions = {
 
         const user = await prisma.users.findUnique({ where: { email } });
 
-        if (!user) throw new Error("No user found");
-        if (!user.password) throw new Error("No password set for user");
-        if (!user.verifiedAt) throw new Error("User not verified");
-        const valid = await bcrypt.compare(password, user.password);
-        if (!valid) throw new Error("Invalid password");
+        if (!user || !user.password || !user.verifiedAt) {
+          throw new Error("User not found or not verified");
+        }
 
-        return {
-          id: user.id,
-          email: user.email,
-          name: user.name
-        };
+        const isValid = await bcrypt.compare(password, user.password);
+        if (!isValid) throw new Error("Invalid password");
+
+        return { id: user.id, email: user.email, name: user.name };
       },
     }),
   ],
@@ -46,5 +41,6 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 };
 
+// ✅ Hanya export default handler (wajib di App Router)
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };

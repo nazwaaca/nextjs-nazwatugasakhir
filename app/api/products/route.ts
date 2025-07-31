@@ -7,7 +7,7 @@ const prisma = new PrismaClient().$extends(withAccelerate());
 export async function GET() {
   const products = await prisma.product.findMany({
     orderBy: {
-      id: 'asc', // atau 'asc' kalau mau yang lama di atas
+      id: 'asc',
     },
   }
   );
